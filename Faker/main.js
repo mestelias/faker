@@ -19,35 +19,42 @@ class Employee extends User {
 	}						
 
 	static medSalary(employees)	{
-		return mediane(employees.map(employees => employees.salary));
+		return mediane(employees.map(employee => employee.salary));
 	}
 
-	static medAge(employees) {
-		return mediane(employees.map(employees => employees.age));
+	static avgAge(employees) {
+		return avg(employees.map(employee => employee.age));
 	}
 
+	static totalSalary(employees) {
+		let sum = employees.reduce((acc, employee) => acc + employee.salary);
+		return sum * 1.87;
+	}
+
+	/*static lastNameBeginsWithA(employees) {
+		return employees.reduce((acc, employees) => )
+	}*/
+
+	static bestSalary(employees) {
+		return Math.max(...employees.map(employee => employee.salary));
+	}
 }
 
-//const randRange = new Array(100)/*.fill(null)*/.map(e => e = faker.fake("{{firstName}}, {{lastName}}, {{eMail}}, {{numTel}} {{age}}"))
-
-//console.log(randRange);
-
-const generateEmployees = () => {
-	function randRange(min,max) {
-		min = Math.ceil(min);
-		max = Math.floor(max);
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
+const test_employees = () => {
+	faker.locale = "fr";
 
 	let employees = [];
 
-	for(let i = 0; i < 100; i++){
-		let Cur_employe = new employe(faker.name.firstName(), faker.name.lastName(), faker.internet.eMail(), faker.phone.phoneNumber(),randRange(20, 115), faker.name.jobTitle(), randRange(1231, 76, 7589, 56));
-		employees.push(Cur_employe);
+	for(let i = 0; i < 10000; i++) {
+		let employees = new Employee(
+			faker.name.firstName(),
+			faker.name.lastName(),
+			faker.internet.eMail(),
+			faker.phone.phoneNumber(),
+			randRange(18, 62),
+			faker.name.jobTitle(),
+			randRange(1000, 10000)
+		);
+		employees.push(employee);
 	}
 }
-
-
-/*new Array(100).fill.firstName.lastName.eMail.numTel.age.jobTitle.salary.medSalary.medAge;
-
-console.log(Array);*/
